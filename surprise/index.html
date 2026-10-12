@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- A redirect hop, not a page: keep it out of search results. -->
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <title>ShakeSnap — Instant Photos You Shake to Reveal</title>
+
+  <!-- Link previews: messengers read these tags but never run the redirect,
+       so this is what a preview card of the shared link shows. og:image must
+       be an absolute URL. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.shakesnap.app/surprise" />
+  <meta property="og:title" content="ShakeSnap — Shoot. Shake. Share." />
+  <meta property="og:description" content="Instant photos you shake to reveal. Free for iPhone and Android." />
+  <meta property="og:image" content="https://www.shakesnap.app/assets/app_icon.png" />
+
+  <!-- Without JS there is no device detection, so hand the visitor to the
+       homepage's download section, which carries both store badges. -->
+  <noscript><meta http-equiv="refresh" content="0; url=../index.html#download" /></noscript>
+
+  <!-- Redirects to the visitor's store; see the comments in get-app.js. -->
+  <script src="../assets/get-app.js" data-source="surprise"></script>
+
+  <style>
+    :root {
+      --bg:    #1a1a1a;
+      --text:  #faf8f0;
+      --muted: rgba(250, 248, 240, 0.55);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+    img.icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 1rem; }
+    h1 { font-size: 1.4rem; margin-bottom: .4rem; }
+    p  { color: var(--muted); margin-bottom: 1.5rem; }
+    a  { color: var(--text); }
+  </style>
+</head>
+<body>
+  <!-- Normally never seen: only if a redirect is blocked or slow. -->
+  <main>
+    <img class="icon" src="../assets/app_icon.png" alt="" />
+    <h1>Get ShakeSnap</h1>
+    <p>Taking you to the store…</p>
+    <a href="../index.html#download">Continue to the download page →</a>
+  </main>
+</body>
+</html>

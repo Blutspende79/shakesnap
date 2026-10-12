@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+  <title>ShakeSnap — Sofortbilder, die du wachschüttelst</title>
+  <meta name="description" content="ShakeSnap macht aus deinen Fotos Sofortbild-Erinnerungen. Schreib etwas drauf, kritzle auf den Rahmen oder schick eine Überraschung — schütteln zum Entwickeln!" />
+  <meta property="og:title" content="ShakeSnap — Shoot. Shake. Share." />
+  <meta property="og:description" content="Die verspielte Sofortbild-Kamera-App. Knipsen, kritzeln, schütteln zum Entwickeln." />
+  <!-- Link previews (WhatsApp, iMessage, social). og:image must be an
+       absolute URL; the image is rendered from art-sources/og-image.html. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ShakeSnap" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:url" content="https://www.shakesnap.app/de/" />
+  <meta property="og:image" content="https://www.shakesnap.app/assets/og-image-de.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="ShakeSnap-App-Icon neben einem Sofortbild — Shoot. Shake. Share." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://www.shakesnap.app/de/" />
+  <link rel="alternate" hreflang="en" href="https://www.shakesnap.app/" />
+  <link rel="alternate" hreflang="de" href="https://www.shakesnap.app/de/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.shakesnap.app/" />
+
+  <link rel="stylesheet" href="../assets/home.css" />
+</head>
+<body>
+
+  <!-- Icon set, used as <svg class="icon"><use href="#i-…"/></svg>. Inline
+       rather than a separate file so <use> also works when the page is opened
+       straight from disk. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-camera" viewBox="0 0 24 24">
+      <path d="M4 7.5h3L9 4.5h6l2 3h3a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8.5a1 1 0 0 1 1-1z" />
+      <circle cx="12" cy="13.25" r="3.75" />
+    </symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24">
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z" />
+      <path d="M14.5 5.5l3 3" />
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24">
+      <path d="M21 3L10 14" />
+      <path d="M21 3l-6.5 18-4.5-7-7-4.5z" />
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M12 3.5v11.5" />
+      <path d="M7 10.5l5 5 5-5" />
+      <path d="M5 20h14" />
+    </symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24">
+      <rect x="3.5" y="8" width="17" height="4" rx="1" />
+      <path d="M5 12v7.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V12" />
+      <path d="M12 8v12" />
+      <path d="M12 8S10.5 3.5 8 3.5a2.25 2.25 0 0 0 0 4.5z" />
+      <path d="M12 8s1.5-4.5 4-4.5a2.25 2.25 0 0 1 0 4.5z" />
+    </symbol>
+    <symbol id="i-phone-shake" viewBox="0 0 24 24">
+      <rect x="7.5" y="3" width="9" height="18" rx="2" />
+      <path d="M11 17.5h2" />
+      <path d="M3.5 9v6M20.5 9v6" />
+    </symbol>
+    <symbol id="i-tap" viewBox="0 0 24 24">
+      <path d="M9.5 13V5.25a1.75 1.75 0 0 1 3.5 0V11" />
+      <path d="M13 10.5a1.75 1.75 0 0 1 3.5 0V12" />
+      <path d="M16.5 11.5a1.75 1.75 0 0 1 3.5 0V15a6.5 6.5 0 0 1-6.5 6.5h-1a6.5 6.5 0 0 1-5-2.4L4.3 15.4a1.75 1.75 0 0 1 2.6-2.3L9.5 15.5" />
+    </symbol>
+  </svg>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="../assets/app_icon.png" alt="ShakeSnap-Symbol" />
+        ShakeSnap
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Funktionen</a></li>
+        <li><a href="#personal">Gestalten</a></li>
+        <li><a href="#surprise">Überraschung</a></li>
+        <li><a href="#download">Download</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-switch" role="navigation" aria-label="Sprache">
+          <span aria-current="true">DE</span>
+          <a href="../index.html" hreflang="en" lang="en">EN</a>
+        </div>
+        <a href="#download" class="nav-cta">App holen</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-copy">
+        <div class="hero-brand">
+          <img class="app-icon" src="../assets/app_icon.png" alt="" width="64" height="64" />
+          <div>
+            <p class="hero-brand-name">ShakeSnap</p>
+            <p class="eyebrow">Sofortbilder, ganz persönlich</p>
+          </div>
+        </div>
+        <h1><span class="visually-hidden">ShakeSnap, die Sofortbild-App: </span>Shoot.<br><span class="rainbow-text">Shake.</span><br>Share.</h1>
+        <p class="hero-sub">
+          ShakeSnap macht aus deinen Fotos Sofortbild-Momente —
+          schreib persönliche Worte drauf, kritzle auf den Rahmen oder schick
+          ein Überraschungsbild, das deine Freunde erst
+          <strong>wachschütteln</strong> müssen.
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="photo-card-stack">
+          <!-- back card (slightly offset) -->
+          <div class="p-back">
+            <div class="p-photo" style="height:160px; background:linear-gradient(135deg,#2c1654,#1a5276);"></div>
+            <div class="p-border">
+              <span class="p-caption" style="color:#bbb;">schüttel mich! ✨</span>
+            </div>
+          </div>
+          <!-- front card -->
+          <div class="p-front" id="heroCard" title="Klicken zum Wiederholen">
+            <div class="p-photo">
+              <!-- Photo is swapped for a random one from HERO_PHOTOS on each
+                   develop; the src here is the no-JS fallback. -->
+              <img id="heroImg" class="reveal-img"
+                src="../pictures/web/1_brooke-cagle-oTweoxMKdkA.jpg"
+                alt="Ein Foto wird entwickelt" />
+              <div id="heroResetHint" class="hero-reset-hint">↩ klicken zum Zurücksetzen</div>
+            </div>
+            <div class="p-border">
+              <span class="p-caption">bester Tag ever 🌈</span>
+            </div>
+          </div>
+          <div class="shake-hint">
+            <svg class="icon shake-icon" aria-hidden="true"><use href="#i-phone-shake" /></svg> schütteln zum Entwickeln
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a href="#download" class="btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-download" /></svg> Kostenlos laden</a>
+        <a href="#surprise" class="btn-ghost"><svg class="icon" aria-hidden="true"><use href="#i-gift" /></svg> Zur Überraschung</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Rainbow divider ──────────────────────────────────────── -->
+  <div class="container" style="padding-block:2.75rem 0;">
+    <div class="rainbow-bar"></div>
+  </div>
+
+  <!-- ── Features ─────────────────────────────────────────────── -->
+  <section class="section" id="features">
+    <div class="container">
+      <p class="section-label">✦ Das steckt drin</p>
+      <h2>Alles, was ein Sofortbild braucht —<br><span class="rainbow-text">und mehr.</span></h2>
+      <div class="feats">
+
+        <div class="feat-card reveal">
+          <div class="feat-icon"><svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg></div>
+          <p class="feat-title">Sofortbild-Rahmen</p>
+          <p class="feat-body">
+            Knips mit der Live-Kamera oder wähl ein Bild aus deiner Galerie.
+            Es landet direkt in einem klassischen weißen Sofortbild-Rahmen —
+            mit breitem unteren Rand und Schatten, fast wie zum Anfassen.
+            Front- und Rückkamera, Zoomen mit zwei Fingern, Tippen zum Fokussieren.
+          </p>
+        </div>
+
+        <div class="feat-card reveal" style="transition-delay:.1s">
+          <div class="feat-icon"><svg class="icon" aria-hidden="true"><use href="#i-pen" /></svg></div>
+          <p class="feat-title">Schreiben &amp; Kritzeln</p>
+          <p class="feat-body">
+            Schreib eine Bildunterschrift in echter Handschrift-Optik oder
+            nimm den digitalen Stift und mal direkt auf den weißen Rand.
+            Insider-Witze, kleine Herzen, der Name deiner besten Freundin —
+            der Rahmen ist deine Leinwand.
+          </p>
+        </div>
+
+        <div class="feat-card reveal" style="transition-delay:.2s">
+          <div class="feat-icon"><svg class="icon" aria-hidden="true"><use href="#i-send" /></svg></div>
+          <p class="feat-title">Überall teilen</p>
+          <p class="feat-body">
+            Exportiere dein Sofortbild als hochauflösendes Bild. Speichere es in
+            deiner Galerie oder tipp auf Teilen und schick es per WhatsApp,
+            iMessage, Instagram — dahin, wo deine Freunde gerade sind.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Personal message ─────────────────────────────────────── -->
+  <section class="personal-section" id="personal">
+    <div class="container two-col">
+
+      <div class="message-pair reveal personal-copy">
+        <div class="message-card">
+          <div class="mp-photo mp-photo-a"></div>
+          <div class="mp-border">
+            <span class="mp-caption">vermiss dich 🫶</span>
+          </div>
+        </div>
+        <div class="message-card">
+          <div class="mp-photo mp-photo-b"></div>
+          <div class="mp-border">
+            <!-- simulated doodle -->
+            <svg class="mp-svg" viewBox="0 0 176 44" aria-hidden="true">
+              <path class="scribble" d="M8,30 Q25,12 48,24 T92,20" />
+              <path class="scribble" d="M102,28 Q122,12 148,22 T172,18" />
+              <path class="scribble" d="M14,38 Q50,30 88,36 Q122,42 165,34" />
+              <path class="scribble" stroke="#e53935" stroke-width="1.5"
+                d="M84,8 C84,5 87,3 89,5 C91,3 94,5 94,8 C94,12 89,16 89,16 C89,16 84,12 84,8 Z"
+                fill="rgba(229,57,53,.25)" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.15s">
+        <p class="section-label">✦ Mach es persönlich</p>
+        <h2>Deine Worte.<br>Deine Kritzeleien.<br><span class="rainbow-text">Dein Vibe.</span></h2>
+        <p class="body-text">
+          Der breite untere Rand jedes Sofortbilds gehört dir. Schreib eine
+          Bildunterschrift in einer <strong>Schrift im Handschrift-Stil</strong>,
+          die aussieht wie Stift auf Papier, kritzle im Zeichenmodus mit dem
+          Finger — oder beides. Herzen, Insider-Witze, der Name deiner Katze
+          in Blasenbuchstaben: alles erlaubt. Schräg ist gut.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Rainbow divider ──────────────────────────────────────── -->
+  <div class="container" style="padding-block:0;">
+    <div class="rainbow-bar"></div>
+  </div>
+
+  <!-- ── Surprise ─────────────────────────────────────────────── -->
+  <section class="surprise-section" id="surprise">
+    <div class="container surprise-grid">
+
+      <div class="surprise-demo reveal">
+        <div class="ud-wrapper">
+          <div class="ud-card" id="udCard" onclick="developInstantPhoto()">
+            <div class="ud-film">
+              <!-- Swapped for a random one from SURPRISE_PHOTOS on each reset;
+                   the src here is the no-JS fallback. -->
+              <img id="udImg" class="reveal-img"
+                src="../pictures/web/2_morgan-lane-18N4okmWccM.jpg"
+                alt="Überraschungsbild" />
+              <div id="udResetHint" class="hero-reset-hint">↩ klicken zum Zurücksetzen</div>
+            </div>
+            <div class="ud-footer">
+              <p class="ud-label" id="udLabel"
+                data-reveal="!! klick zum Aufdecken !!"
+                data-reveal-shake="!! schütteln zum Aufdecken !!"
+                data-shake-prompt="jetzt Handy schütteln!" data-tada="ta-daa! 🎉">!! klick zum Aufdecken !!</p>
+            </div>
+          </div>
+          <div class="pulse-ring" id="pulseRing"></div>
+          <div class="tap-hint" id="tapHint"><svg class="icon" aria-hidden="true"><use href="#i-tap" /></svg></div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.15s">
+        <p class="section-label" style="color: var(--r);">✦ Die Überraschung</p>
+        <h2>Schick ein Rätsel.<br>Schenk einen <span class="rainbow-text">Moment.</span></h2>
+        <p class="body-text">
+          Schick jemandem ein <strong>unentwickeltes Sofortbild</strong> — nur
+          schwarzer Film. Erst wer <strong>das Handy schüttelt</strong>, erweckt
+          dein Foto zum Leben: je kräftiger, desto schneller. Hört das
+          Schütteln auf, bleibt das Bild halb entwickelt stehen.
+        </p>
+        <p class="body-text">
+          <strong>Perfekt für</strong> Geburtstagsüberraschungen,
+          Reise-Enthüllungen oder um Freunde mit einem Foto vom Mittagessen
+          zu trollen.
+        </p>
+        <p class="surprise-quote">
+          „ein Selfie? ein Meme? Urlaubsfotos?<br>
+          nur Schütteln verrät es.“ 😏
+        </p>
+        <p class="demo-hint">
+          Probier’s aus: Klick auf die Karte. Am Handy antippen, dann
+          <strong>das Handy schütteln</strong>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── How it works ──────────────────────────────────────────── -->
+  <section class="steps-section" id="how">
+    <div class="container">
+      <p class="section-label">✦ So funktioniert’s</p>
+      <h2>Drei Schritte.<br><span class="rainbow-text">Endlos Spaß.</span></h2>
+      <div class="steps">
+
+        <div class="step reveal">
+          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg></div>
+          <p class="step-title">1. Knipsen oder auswählen</p>
+          <p class="step-body">Mach ein Foto in der App oder wähl eins aus deiner Galerie. Es erscheint sofort in einem Bilderrahmen, bereit für deine persönliche Note.</p>
+        </div>
+
+        <div class="step reveal" style="transition-delay:.12s">
+          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-pen" /></svg></div>
+          <p class="step-title">2. Persönlich machen</p>
+          <p class="step-body">Schreib eine Bildunterschrift oder mal auf den weißen Rand. Dann entscheide: fertig entwickelt teilen oder unentwickelt als Überraschung verschicken.</p>
+        </div>
+
+        <div class="step reveal" style="transition-delay:.24s">
+          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-send" /></svg></div>
+          <p class="step-title">3. Verschicken</p>
+          <p class="step-body">Teile es per WhatsApp, iMessage, Instagram oder speichere es in deiner Galerie. Dein Moment, deine Entscheidung.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────────── -->
+  <section class="cta-section" id="download">
+    <div class="container" style="position:relative;">
+      <img class="app-icon cta-icon" src="../assets/app_icon.png" alt=""
+        width="120" height="120" />
+      <p class="section-label">✦ Bereit zum Knipsen?</p>
+      <h2>Hol dir ShakeSnap<br><span class="rainbow-text">kostenlos.</span></h2>
+      <p class="body-text">
+        Für iOS und Android. Kein Abo, keine Bezahlschranke —
+        einfach Freude am Fotos-Teilen.
+      </p>
+      <p class="coming-soon">Bald verfügbar</p>
+      <!-- Store URLs are kept in sync with assets/get-app.js.
+           TODO(release): neither app is live yet, so the badges carry no href
+           (no dead or 404 click). On release add them back and drop
+           the .coming-soon line above:
+             App Store:   https://apps.apple.com/app/id…
+             Google Play: https://play.google.com/store/apps/details?id=app.shakesnap -->
+      <div class="badges" id="storeBadges">
+        <a class="badge badge-apple">
+          <img src="../assets/badges/app-store-en.svg"
+            alt="Laden im App Store" />
+        </a>
+        <a class="badge badge-play">
+          <img src="../assets/badges/google-play-en.png"
+            alt="Jetzt bei Google Play" />
+        </a>
+      </div>
+      <ul class="trust-line">
+        <li>Keine Werbung</li>
+        <li>Keine Anmeldung</li>
+        <li>Deine Fotos bleiben auf deinem Handy</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/app_icon.png" alt="ShakeSnap" />
+        ShakeSnap
+      </div>
+      <span class="footer-note">Made in Germany</span>
+      <span class="footer-hand">shake it! <svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg></span>
+    </div>
+    <div class="container" style="margin-top:1.25rem;">
+      <div class="rainbow-bar" style="opacity:.35;"></div>
+    </div>
+    <div class="container">
+      <p class="footer-legal" style="font-size:.82rem;">
+        <a href="../impressum.html">Impressum</a> &middot;
+        <a href="../datenschutz.html">Datenschutz</a> &middot;
+        <a href="../app-privacy-de.html">App-Datenschutz</a>
+      </p>
+      <p class="footer-legal">
+        Schriftarten:
+        <a href="../fonts/Caveat-OFL.txt"
+          target="_blank" rel="noopener noreferrer">Caveat</a> und
+        <a href="../fonts/Nunito-OFL.txt"
+          target="_blank" rel="noopener noreferrer">Nunito</a>,
+        lizenziert unter der SIL Open Font License 1.1.
+      </p>
+      <p class="footer-legal" style="margin-top:.55rem;">
+        Fotos von
+        <a href="https://unsplash.com/photos/oTweoxMKdkA"
+          target="_blank" rel="noopener noreferrer">Brooke Cagle</a>,
+        <a href="https://unsplash.com/photos/PGnqT0rXWLs"
+          target="_blank" rel="noopener noreferrer">Helena Lopes</a>,
+        <a href="https://unsplash.com/photos/BIk2ANMmNz4"
+          target="_blank" rel="noopener noreferrer">Timon Studler</a>,
+        <a href="https://unsplash.com/photos/18N4okmWccM"
+          target="_blank" rel="noopener noreferrer">Morgan Lane</a> und
+        <a href="https://unsplash.com/photos/NgDapgpAiTE"
+          target="_blank" rel="noopener noreferrer">Pineapple Supply Co.</a>
+        auf <a href="https://unsplash.com/"
+          target="_blank" rel="noopener noreferrer">Unsplash</a>.
+      </p>
+      <p class="footer-legal" style="margin-top:.55rem;">
+        Fotos genutzt unter der
+        <a href="https://unsplash.com/license"
+          target="_blank" rel="noopener noreferrer">Unsplash-Lizenz</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ── JS ────────────────────────────────────────────────────── -->
+  <script src="../assets/home.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* Shared styling for the legal pages (Impressum, Datenschutz, app privacy
+   policy). Tokens mirror index.html so the pages feel like part of the same
+   site. These pages are generated — do not edit the HTML by hand. */
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/Caveat-Variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../fonts/Nunito-Variable.woff2') format('woff2');
+}
+
+:root {
+  --dark:   #1a1a1a;
+  --text:   #faf8f0;
+  --muted:  rgba(250, 248, 240, .58);
+  --faint:  rgba(250, 248, 240, .10);
+  --yellow: #ffd54f;
+
+  --r: #e53935; --o: #fb8c00; --y: #fdd835; --g: #43a047;
+  --t: #00acc1; --b: #1e88e5; --p: #8e24aa;
+  --rainbow: linear-gradient(90deg,
+    var(--r), var(--o), var(--y), var(--g), var(--t), var(--b), var(--p));
+
+  --sans: 'Nunito', sans-serif;
+  --hand: 'Caveat', cursive;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  background: var(--dark);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a   { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--yellow); }
+
+.container {
+  max-width: 760px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+.rainbow-bar { height: 5px; background: var(--rainbow); border-radius: 3px; }
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.page-head { padding-block: 1.1rem; border-bottom: 1px solid rgba(255,255,255,.06); }
+.head-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand {
+  display: flex; align-items: center; gap: .65rem;
+  font-weight: 900; font-size: 1.15rem; color: var(--text); text-decoration: none;
+}
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.head-actions { display: flex; align-items: center; gap: 1.1rem; }
+.lang-switch { display: flex; gap: .15rem; font-size: .8rem; font-weight: 800; }
+.lang-switch a, .lang-switch span {
+  padding: .2rem .5rem; border-radius: 6px; text-decoration: none;
+}
+.lang-switch a { color: var(--muted); }
+.lang-switch a:hover { color: var(--text); }
+.lang-switch span { color: var(--dark); background: var(--yellow); }
+.back-link { font-size: .85rem; font-weight: 700; color: var(--muted); text-decoration: none; }
+.back-link:hover { color: var(--text); }
+
+/* ── Document body ───────────────────────────────────────────────── */
+main { padding-block: 3.25rem 4.5rem; }
+
+main h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  margin-bottom: 1.6rem;
+}
+main h2 {
+  font-size: 1.28rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-top: 2.6rem;
+  margin-bottom: .8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+main h3 { font-size: 1.02rem; font-weight: 800; margin-top: 1.7rem; margin-bottom: .5rem; }
+
+main p, main li { color: var(--muted); }
+main a {
+  color: var(--text);
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(250, 248, 240, .35);
+  text-underline-offset: 2px;
+  transition: text-decoration-color .15s, color .15s;
+}
+main a:hover {
+  color: var(--text);
+  text-decoration-color: var(--yellow);
+}
+main p  { margin-bottom: 1rem; }
+main strong { color: var(--text); font-weight: 800; }
+
+main ul, main ol { margin: 0 0 1.15rem 1.35rem; }
+main li { margin-bottom: .45rem; }
+
+main hr { border: 0; height: 1px; background: rgba(255,255,255,.08); margin-block: 2.2rem; }
+
+main blockquote {
+  border-left: 3px solid var(--yellow);
+  background: rgba(255, 213, 79, .05);
+  padding: .9rem 1.2rem;
+  margin-bottom: 1.2rem;
+  border-radius: 0 8px 8px 0;
+}
+main blockquote p:last-child { margin-bottom: 0; }
+
+main code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9em;
+  background: var(--faint);
+  padding: .12em .4em;
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* Tables (the app policy uses one for permissions) */
+.table-wrap { overflow-x: auto; margin-bottom: 1.3rem; }
+main table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+main th, main td {
+  border: 1px solid rgba(255,255,255,.1);
+  padding: .6rem .8rem;
+  text-align: left;
+  vertical-align: top;
+  color: var(--muted);
+}
+main th { background: var(--faint); color: var(--text); font-weight: 800; }
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+footer { border-top: 1px solid rgba(255,255,255,.06); padding-block: 2rem 2.5rem; }
+.foot-nav {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .4rem 1.4rem; font-size: .82rem; font-weight: 700;
+  margin-bottom: 1rem;
+}
+.foot-nav a { color: var(--muted); text-decoration: none; }
+.foot-nav a:hover { color: var(--text); }
+.foot-nav a[aria-current="page"] { color: var(--yellow); }
+.foot-note { font-size: .74rem; color: rgba(250,248,240,.34); text-align: center; }
+.foot-hand { font-family: var(--hand); font-size: 1.15rem; color: var(--yellow); }
+
+@media (max-width: 560px) {
+  .head-inner { flex-direction: row; }
+  main h2 { font-size: 1.15rem; }
+}
+
+/* The brand already links home; on narrow phones the back link would crowd
+   the language switch off the header. */
+@media (max-width: 420px) {
+  .back-link { display: none; }
+}
