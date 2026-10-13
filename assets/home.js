@@ -64,17 +64,16 @@ const observer = new IntersectionObserver(
 );
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── Tap hint: fire once when the surprise card scrolls into view ──────────
-const tapHintEl = document.getElementById('tapHint');
-const tapTriggerEl = document.getElementById('udCard');
-if (tapHintEl && tapTriggerEl) {
-  const tapObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      tapHintEl.classList.add('show');
-      tapObs.disconnect();
-    }
-  }, { threshold: 0.5 });
-  tapObs.observe(tapTriggerEl);
+// ── Nav brand: on phones the hero's own icon + name sit right below it, so
+// the CSS hides the nav copy while the hero brand is on screen. The top
+// margin is the fixed nav's height, which covers that part of the viewport.
+const navEl = document.querySelector('nav');
+const heroBrandEl = document.querySelector('.hero-brand');
+if (navEl && heroBrandEl) {
+  new IntersectionObserver(
+    entries => navEl.classList.toggle('hero-brand-visible', entries[0].isIntersecting),
+    { rootMargin: '-70px 0px 0px 0px' }
+  ).observe(heroBrandEl);
 }
 
 // ── Hero instant-photo card: auto-develop on page load, click to replay ──
@@ -132,11 +131,10 @@ if (heroCard) {
 }
 
 // ── Surprise instant-photo demo ─────────────────────────────
-// Desktop: a click develops the photo on its own. Phones: the visitor shakes
-// the real phone, like in the app — the harder the shake, the faster it
-// develops, and it freezes when the shaking stops. Android delivers motion
-// events right away; iOS asks for access on the first tap. Whenever motion
-// is unavailable or declined, the tap falls back to the click behaviour.
+// A click or tap shakes the card twice and the photo develops on its own;
+// the next click resets it with a new photo. No motion sensor on the
+// website: browsers claim the shake gesture for their own features (e.g.
+// Firefox's shake to summarize) and iOS would ask for motion access.
 const udCard      = document.getElementById('udCard');
 const udImg       = document.getElementById('udImg');
 const udLabel     = document.getElementById('udLabel');
@@ -146,69 +144,46 @@ const tapHint     = document.getElementById('tapHint');
 
 // Length of the develop-photo animation on .reveal-img.developing (home.css).
 const DEVELOP_MS = 3500;
-// Change in acceleration (m/s², summed over the three axes) between two
-// motion events. Below the threshold is ordinary hand movement; above it
-// counts as shaking and feeds the development, up to the cap per event.
-const SHAKE_THRESHOLD = 10;
-const SHAKE_CAP       = 40;
-const MS_PER_SHAKE    = 1.6; // ≈ 3 s of hard shaking develops the photo
+// The finger below the card bounces whenever the card comes into view, then
+// again at this interval while it stays there, until the first tap. With
+// reduced motion it bounces once only.
+const TAP_HINT_EVERY_MS = 5000;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const canDrive = !!udImg && typeof udImg.getAnimations === 'function';
-const motionCapable = canDrive && 'DeviceMotionEvent' in window &&
-  matchMedia('(pointer: coarse)').matches;
-const needsMotionPermission = motionCapable &&
-  typeof DeviceMotionEvent.requestPermission === 'function';
-
-let developAnim  = null;  // the photo's CSS animation, paused while shaking
-let autoRunning  = false; // developing on its own after a click
 let isDeveloped  = false;
-let motionActive = false; // the device is delivering motion events
-let listening    = false;
-let prompted     = false; // "now shake your phone!" has been shown
-let cardVisible  = false;
-let lastAccel    = null;
-let jiggleTimer  = 0;
+let autoRunning  = false;
+let tapHintDone  = !tapHint;
+let tapHintTimer = 0;
+
+function bounceTapHint() {
+  tapHint.classList.remove('show');
+  void tapHint.offsetWidth; // restart the animation
+  tapHint.classList.add('show');
+  if (reduceMotion) tapHintDone = true;
+  else tapHintTimer = setTimeout(bounceTapHint, TAP_HINT_EVERY_MS);
+}
+
+function stopTapHint() {
+  tapHintDone = true;
+  clearTimeout(tapHintTimer);
+  if (tapHint) tapHint.classList.remove('show');
+}
+
+if (!tapHintDone && udCard) {
+  new IntersectionObserver(entries => {
+    if (tapHintDone) return;
+    clearTimeout(tapHintTimer);
+    if (entries[0].isIntersecting) bounceTapHint();
+  }, { threshold: 0.5 }).observe(udCard);
+}
 
 // The card never resets before its first reveal, so seed it here —
 // otherwise every visitor's first surprise would be the markup fallback.
 if (udImg) udImg.src = nextSurprisePhoto();
 
-function idleLabel() {
-  return motionCapable ? udLabel.dataset.revealShake : udLabel.dataset.reveal;
-}
-if (udLabel && motionCapable) udLabel.textContent = idleLabel();
-
-if (udCard) {
-  new IntersectionObserver(entries => {
-    cardVisible = entries[0].isIntersecting;
-  }, { threshold: 0.5 }).observe(udCard);
-}
-
-function hideTapHint() {
-  if (tapHint) { tapHint.style.animation = 'none'; tapHint.style.opacity = '0'; }
-}
-
-// Starts the develop animation paused at the beginning, once per reveal.
-function developAnimation() {
-  if (developAnim) return developAnim;
-  udImg.style.filter = '';
-  void udImg.offsetWidth;
-  udImg.classList.add('developing');
-  udCard.classList.add('developed');
-  developAnim = udImg.getAnimations()
-    .find(a => a.animationName === 'develop-photo') || null;
-  if (developAnim) {
-    developAnim.pause();
-    // Rejects when a reset cancels the animation; nothing to do then.
-    developAnim.finished.then(finishReveal, () => {});
-  }
-  return developAnim;
-}
-
 function finishReveal() {
   isDeveloped = true;
   autoRunning = false;
-  udCard.classList.remove('jiggle');
   udLabel.textContent = udLabel.dataset.tada;
   udLabel.classList.add('tada');
   if (udResetHint) udResetHint.classList.add('visible');
@@ -216,29 +191,25 @@ function finishReveal() {
 
 function resetReveal() {
   isDeveloped = false;
-  autoRunning = false;
-  prompted    = false;
-  developAnim = null;
-  udCard.classList.remove('developed', 'shaking', 'jiggle');
-  udImg.classList.remove('developing'); // also cancels the animation
+  udCard.classList.remove('developed', 'shaking');
+  udImg.classList.remove('developing');
   udImg.style.filter = 'brightness(0) saturate(0)';
   udImg.src = nextSurprisePhoto();
-  udLabel.textContent = idleLabel();
+  udLabel.textContent = udLabel.dataset.reveal;
   udLabel.classList.remove('tada');
   if (udResetHint) udResetHint.classList.remove('visible');
   udCard.style.transform = 'rotate(-3deg)';
 }
 
-// The click version: two scripted shakes, the photo develops on its own.
+// Two scripted shakes; the photo develops during the first one.
 function autoReveal() {
   autoRunning = true;
   udLabel.textContent = '';
-  hideTapHint();
+  stopTapHint();
 
   udRing.classList.add('fire');
   udRing.addEventListener('animationend', () => udRing.classList.remove('fire'), { once: true });
 
-  udCard.classList.remove('jiggle');
   udCard.classList.add('shaking');
   udCard.style.animation = 'wiggle .22s ease-in-out 5';
   udCard.addEventListener('animationend', () => {
@@ -248,16 +219,11 @@ function autoReveal() {
   }, { once: true });
 
   setTimeout(() => {
-    const anim = canDrive ? developAnimation() : null;
-    if (anim) {
-      anim.play(); // continues from wherever shaking left it
-    } else {
-      udImg.style.filter = '';
-      void udImg.offsetWidth;
-      udImg.classList.add('developing');
-      udCard.classList.add('developed');
-      setTimeout(finishReveal, DEVELOP_MS);
-    }
+    udImg.style.filter = '';
+    void udImg.offsetWidth;
+    udImg.classList.add('developing');
+    udCard.classList.add('developed');
+    setTimeout(finishReveal, DEVELOP_MS);
   }, 200);
 
   setTimeout(() => {
@@ -269,70 +235,9 @@ function autoReveal() {
   }, 1950);
 }
 
-function promptShake() {
-  prompted = true;
-  hideTapHint();
-  udLabel.textContent = udLabel.dataset.shakePrompt;
-  // No motion events at all (no sensor, or blocked): don't leave the
-  // visitor shaking for nothing.
-  setTimeout(() => {
-    if (!motionActive && !isDeveloped && !autoRunning) autoReveal();
-  }, 1200);
-}
-
-function onMotion(e) {
-  const a = e.accelerationIncludingGravity;
-  if (!a || a.x == null) return;
-  motionActive = true;
-  const prev = lastAccel;
-  lastAccel = { x: a.x, y: a.y, z: a.z };
-  if (!prev || isDeveloped || autoRunning || !cardVisible) return;
-
-  const delta = Math.abs(a.x - prev.x) + Math.abs(a.y - prev.y) + Math.abs(a.z - prev.z);
-  if (delta < SHAKE_THRESHOLD) return;
-
-  const anim = developAnimation();
-  if (!anim) return;
-  hideTapHint();
-  udLabel.textContent = '';
-  anim.currentTime = Math.min(DEVELOP_MS,
-    anim.currentTime + (Math.min(delta, SHAKE_CAP) - SHAKE_THRESHOLD) * MS_PER_SHAKE);
-  if (anim.currentTime >= DEVELOP_MS) { anim.finish(); return; }
-
-  udCard.classList.add('jiggle');
-  clearTimeout(jiggleTimer);
-  jiggleTimer = setTimeout(() => udCard.classList.remove('jiggle'), 250);
-}
-
-function listenForShake() {
-  if (listening) return;
-  listening = true;
-  window.addEventListener('devicemotion', onMotion);
-}
-
-// Android and other browsers without a permission prompt: listen right away,
-// so shaking works even before the first tap.
-if (motionCapable && !needsMotionPermission) listenForShake();
-
 // Called from the card's onclick in the markup.
 function developInstantPhoto() {
   if (isDeveloped) { resetReveal(); return; }
   if (autoRunning) return;
-
-  if (motionCapable && !prompted) {
-    if (needsMotionPermission && !listening) {
-      // Must be called straight from the tap for iOS to show the prompt.
-      DeviceMotionEvent.requestPermission()
-        .then(state => {
-          if (state === 'granted') { listenForShake(); promptShake(); }
-          else autoReveal();
-        })
-        .catch(autoReveal);
-      return;
-    }
-    promptShake();
-    return;
-  }
-  // Second tap, or no motion: develop on its own.
   autoReveal();
 }

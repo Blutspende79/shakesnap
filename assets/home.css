@@ -41,7 +41,7 @@
     var(--r), var(--o), var(--y), var(--g), var(--t), var(--b), var(--p));
 
   --text:   #faf8f0;
-  --muted:  rgba(250, 248, 240, 0.55);
+  --muted:  rgba(250, 248, 240, 0.68);
   --faint:  rgba(250, 248, 240, 0.08);
 
   --sans: 'Nunito', sans-serif;
@@ -471,7 +471,7 @@ h2 {
 .feat-card:nth-child(2) .feat-icon { color: #b39ddb;       background: rgba(142,36,170,.16); }
 .feat-card:nth-child(3) .feat-icon { color: #ffab91;       background: rgba(229,57,53,.14); }
 .feat-title { font-size: 1.1rem; font-weight: 800; margin-bottom: .6rem; }
-.feat-body  { font-size: .88rem; color: var(--muted); line-height: 1.72; }
+.feat-body  { font-size: .95rem; color: var(--muted); line-height: 1.72; }
 
 /* ── Personal section ────────────────────────────────────────── */
 .personal-section {
@@ -508,12 +508,24 @@ h2 {
 .mp-border { padding: 8px 9px 16px; }
 .mp-caption {
   font-family: var(--hand);
-  font-size: 1.42rem;
-  color: #555;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #1e88e5; /* the app's blue pen colour */
   line-height: 1.35;
 }
 .mp-svg { width: 100%; height: 38px; }
 .scribble { stroke: #666; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+/* Drawn small in the markup; scaled up around its own centre and nudged
+   down so it stays inside the doodle strip. Stroke halved to stay ~1.5. */
+.scribble.heart {
+  stroke: #e53935;
+  fill: #e53935;
+  stroke-width: .8;
+  stroke-linejoin: round;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translate(0, 4px) scale(1.9);
+}
 
 /* ── Surprise section ────────────────────────────────────────── */
 .surprise-section {
@@ -606,14 +618,16 @@ h2 {
 
 .tap-hint {
   position: absolute;
-  bottom: -54px;
+  bottom: -84px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   color: var(--yellow);
+  filter: drop-shadow(0 0 8px rgba(255, 213, 79, .5));
   opacity: 0;
   pointer-events: none;
 }
+.tap-hint .icon { stroke-width: 2.25; }
 @keyframes hint-bounce {
   0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
   12%  { transform: translateX(-50%) translateY(-14px); }
@@ -627,23 +641,22 @@ h2 {
 }
 .tap-hint.show { animation: hint-bounce 2.6s ease forwards; }
 
-.ud-card.jiggle { animation: wiggle .22s ease-in-out infinite; }
-
 /* Paragraph spacing inside the copy columns. */
 .body-text + .body-text,
 .body-text + .surprise-quote,
 .surprise-quote + .demo-hint { margin-top: 1.1rem; }
 .demo-hint {
   font-size: .85rem;
-  color: rgba(250, 248, 240, .42);
+  color: rgba(250, 248, 240, .6);
 }
-.demo-hint strong { color: rgba(250, 248, 240, .62); }
+.demo-hint strong { color: rgba(250, 248, 240, .82); }
 
 .surprise-quote {
   font-family: var(--hand);
-  font-size: 1.35rem;
+  font-size: 1.75rem;
+  font-weight: 600;
   color: var(--yellow);
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
 /* ── Steps ───────────────────────────────────────────────────── */
@@ -653,26 +666,34 @@ h2 {
 }
 .steps-section h2 { margin-inline: auto; }
 .steps-section .body-text { margin-inline: auto; }
+/* The step layout values live here so the timeline below follows them. */
 .steps {
+  --step-gap: 2rem;
+  --step-pad: 1.5rem;
+  --step-dot: 76px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: var(--step-gap);
   margin-top: 4rem;
-  position: relative;
 }
-.steps::before {
+.step { padding: var(--step-pad); position: relative; }
+/* Timeline: each step but the last draws the piece from its circle's right
+   edge to the next circle's left edge, at the circles' middle — so it fits
+   any number of steps, gap, padding and circle size. */
+.step:not(:last-child)::after {
   content: '';
   position: absolute;
-  top: 38px;
-  left: calc(16.6% + 22px);
-  right: calc(16.6% + 22px);
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--yellow), var(--p));
-  opacity: .25;
+  top: calc(var(--step-pad) + var(--step-dot) / 2 - 1px);
+  left: calc(50% + var(--step-dot) / 2);
+  width: calc(100% + var(--step-gap) - var(--step-dot));
+  height: 2px;
+  background: var(--muted); /* steps beyond the coloured ones */
+  opacity: .45;
 }
-.step { padding: 1.5rem; }
+.step:nth-child(1)::after { background: linear-gradient(90deg, var(--yellow), #b39ddb); }
+.step:nth-child(2)::after { background: linear-gradient(90deg, #b39ddb, #ffab91); }
 .step-num {
-  width: 76px; height: 76px;
+  width: var(--step-dot); height: var(--step-dot);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -684,7 +705,7 @@ h2 {
 .step:nth-child(2) .step-num { color: #b39ddb; background: rgba(142,36,170,.12); box-shadow: 0 0 0 1px rgba(142,36,170,.25); }
 .step:nth-child(3) .step-num { color: #ffab91; background: rgba(229,57,53,.1);   box-shadow: 0 0 0 1px rgba(229,57,53,.2); }
 .step-title { font-size: 1.05rem; font-weight: 800; margin-bottom: .55rem; }
-.step-body  { font-size: .88rem; color: var(--muted); line-height: 1.75; }
+.step-body  { font-size: .95rem; color: var(--muted); line-height: 1.75; }
 
 /* ── CTA ─────────────────────────────────────────────────────── */
 .cta-section {
@@ -785,18 +806,18 @@ footer {
 }
 .footer-brand img { width: 30px; height: 30px; border-radius: 8px; }
 .footer-note { font-size: .82rem; color: var(--muted); }
-.footer-hand { font-family: var(--hand); font-size: 1.2rem; color: var(--yellow); }
+.footer-hand { font-family: var(--hand); font-size: 1.4rem; font-weight: 600; color: var(--yellow); }
 .footer-hand .icon { vertical-align: -.12em; }
 /* Font attribution. Not required by the OFL — the licence text travels
    with the files in fonts/ — but it makes the credit visible. */
 .footer-legal {
   margin-top: 1.25rem;
   font-size: .74rem;
-  color: rgba(250, 248, 240, .38);
+  color: rgba(250, 248, 240, .55);
   text-align: center;
 }
 .footer-legal a {
-  color: rgba(250, 248, 240, .55);
+  color: rgba(250, 248, 240, .7);
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color .15s;
@@ -827,16 +848,25 @@ footer {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+  .surprise-demo      { padding-bottom: 2.75rem; } /* room for the tap hint */
+  /* Scales down on narrow phones so the first line stays on one row. */
+  .surprise-quote     { font-size: clamp(1.3rem, 6.2vw, 1.5rem); }
   .personal-copy      { order: -1; }
   .feats, .steps      { grid-template-columns: 1fr; }
-  .steps::before      { display: none; }
+  .step::after        { display: none; }
   .nav-links          { display: none; }
+  /* The hero brand sits right below the nav here; show only one of the two
+     (home.js sets the class while the hero brand is in view). */
+  .nav-brand          { transition: opacity .25s, visibility .25s; }
+  nav.hero-brand-visible .nav-brand { opacity: 0; visibility: hidden; }
 }
 @media (max-width: 480px) {
   .photo-card-stack, .p-front, .p-back { width: 200px; }
   .ud-wrapper, .ud-card { width: 195px; }
   .hero-brand            { margin-bottom: 1.1rem; }
   .hero-brand .app-icon  { width: 52px; height: 52px; }
+  /* The footer row wraps on phones; centred, the wrapped line looks intended. */
+  .footer-inner          { justify-content: center; row-gap: .6rem; }
 }
 
 /* Very narrow phones: the language switch needs the room, and the hero's own
