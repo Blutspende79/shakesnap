@@ -10,13 +10,15 @@
 const SCRIPT_URL = document.currentScript.src;
 const photo = name => new URL('../pictures/web/' + name, SCRIPT_URL).href;
 const HERO_PHOTOS = [
-  photo('1_brooke-cagle-oTweoxMKdkA.jpg'),
   photo('1_helena-lopes-PGnqT0rXWLs.jpg'),
   photo('1_timon-studler-BIk2ANMmNz4.jpg'),
+  photo('1_dominik-jirovsky-re2LZOB2XvY.jpg'),
+  photo('1_nina-luong-dy4QG5c5xWQ.jpg'),
 ];
 const SURPRISE_PHOTOS = [
   photo('2_morgan-lane-18N4okmWccM.jpg'),
   photo('2_pineapple-supply-co-NgDapgpAiTE.jpg'),
+  photo('2_trojan-yao-rTJ1g92XYbY.jpg'),
 ];
 
 // Walks a shuffled copy of the pool and reshuffles once it is used up, so
@@ -63,6 +65,44 @@ const observer = new IntersectionObserver(
   { threshold: 0.13 }
 );
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── How it works: dots for the phone carousel (CSS makes .steps a
+// scroll-snap row below 820px; above that the dots are hidden). One dot per
+// step, labelled with the step's own title so it works in both languages.
+const stepsEl = document.querySelector('.steps');
+if (stepsEl) {
+  const steps = [...stepsEl.children];
+  const dots = document.createElement('div');
+  dots.className = 'steps-dots';
+  const buttons = steps.map((step, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', step.querySelector('.step-title')?.textContent ?? String(i + 1));
+    b.addEventListener('click', () => step.scrollIntoView({
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      inline: 'center', block: 'nearest',
+    }));
+    dots.append(b);
+    return b;
+  });
+  stepsEl.after(dots);
+  const markCurrent = () => {
+    // The card whose centre is closest to the row's centre.
+    const mid = stepsEl.getBoundingClientRect().left + stepsEl.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    steps.forEach((step, i) => {
+      const r = step.getBoundingClientRect();
+      const d = Math.abs(r.left + r.width / 2 - mid);
+      if (d < bestDist) { best = i; bestDist = d; }
+    });
+    buttons.forEach((b, i) => i === best
+      ? b.setAttribute('aria-current', 'true')
+      : b.removeAttribute('aria-current'));
+  };
+  stepsEl.addEventListener('scroll', markCurrent, { passive: true });
+  addEventListener('resize', markCurrent);
+  markCurrent();
+}
 
 // ── Nav brand: on phones the hero's own icon + name sit right below it, so
 // the CSS hides the nav copy while the hero brand is on screen. The top

@@ -5,17 +5,20 @@ All photos are from Unsplash and used under the Unsplash License
 (https://unsplash.com/license), which permits free commercial use without
 attribution. Credit is given here voluntarily.
 
-The files in web/ are centre-cropped, resized (640x640) JPEG derivatives of
-the photographers' originals.
+The files in web/ are square-cropped (centred unless noted), resized
+(640x640) JPEG derivatives of the photographers' originals.
 
 Hero card (pool "1_")
 ---------------------
-web/1_brooke-cagle-oTweoxMKdkA.jpg
-  Brooke Cagle - https://unsplash.com/photos/oTweoxMKdkA
 web/1_helena-lopes-PGnqT0rXWLs.jpg
   Helena Lopes - https://unsplash.com/photos/PGnqT0rXWLs
 web/1_timon-studler-BIk2ANMmNz4.jpg
   Timon Studler - https://unsplash.com/photos/BIk2ANMmNz4
+web/1_dominik-jirovsky-re2LZOB2XvY.jpg
+  Dominik Jirovský - https://unsplash.com/photos/re2LZOB2XvY
+web/1_nina-luong-dy4QG5c5xWQ.jpg
+  Nina Luong - https://unsplash.com/photos/dy4QG5c5xWQ
+  (cropped from the bottom; brand logos on the backpack and jacket removed)
 
 Surprise card (pool "2_")
 -------------------------
@@ -23,3 +26,5 @@ web/2_morgan-lane-18N4okmWccM.jpg
   Morgan Lane - https://unsplash.com/photos/18N4okmWccM
 web/2_pineapple-supply-co-NgDapgpAiTE.jpg
   Pineapple Supply Co. - https://unsplash.com/photos/NgDapgpAiTE
+web/2_trojan-yao-rTJ1g92XYbY.jpg
+  Trojan Yao - https://unsplash.com/photos/rTJ1g92XYbY

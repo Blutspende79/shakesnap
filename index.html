@@ -57,11 +57,6 @@
       <path d="M12 8S10.5 3.5 8 3.5a2.25 2.25 0 0 0 0 4.5z" />
       <path d="M12 8s1.5-4.5 4-4.5a2.25 2.25 0 0 1 0 4.5z" />
     </symbol>
-    <symbol id="i-phone-shake" viewBox="0 0 24 24">
-      <rect x="7.5" y="3" width="9" height="18" rx="2" />
-      <path d="M11 17.5h2" />
-      <path d="M3.5 9v6M20.5 9v6" />
-    </symbol>
     <symbol id="i-tap" viewBox="0 0 24 24">
       <path d="M9.5 13V5.25a1.75 1.75 0 0 1 3.5 0V11" />
       <path d="M13 10.5a1.75 1.75 0 0 1 3.5 0V12" />
@@ -77,10 +72,11 @@
         ShakeSnap
       </a>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How it works</a></li>
         <li><a href="#personal">Personalize</a></li>
         <li><a href="#surprise">Surprise</a></li>
         <li><a href="#download">Download</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="nav-actions">
         <div class="lang-switch" role="navigation" aria-label="Language">
@@ -118,7 +114,7 @@
           <div class="p-back">
             <div class="p-photo" style="height:160px; background:linear-gradient(135deg,#2c1654,#1a5276);"></div>
             <div class="p-border">
-              <span class="p-caption" style="color:#bbb;">shake me! ✨</span>
+              <span class="p-caption" aria-hidden="true">&nbsp;</span>
             </div>
           </div>
           <!-- front card -->
@@ -127,16 +123,13 @@
               <!-- Photo is swapped for a random one from HERO_PHOTOS on each
                    develop; the src here is the no-JS fallback. -->
               <img id="heroImg" class="reveal-img"
-                src="pictures/web/1_brooke-cagle-oTweoxMKdkA.jpg"
+                src="pictures/web/1_helena-lopes-PGnqT0rXWLs.jpg"
                 alt="A fun photo being developed" />
               <div id="heroResetHint" class="hero-reset-hint">↩ click to reset</div>
             </div>
             <div class="p-border">
               <span class="p-caption">best day ever 🌈</span>
             </div>
-          </div>
-          <div class="shake-hint">
-            <svg class="icon shake-icon" aria-hidden="true"><use href="#i-phone-shake" /></svg> shake to develop
           </div>
         </div>
       </div>
@@ -154,42 +147,32 @@
     <div class="rainbow-bar"></div>
   </div>
 
-  <!-- ── Features ─────────────────────────────────────────────── -->
-  <section class="section" id="features">
+  <!-- ── How it works ──────────────────────────────────────────── -->
+  <section class="steps-section" id="how">
     <div class="container">
-      <p class="section-label">✦ What you get</p>
-      <h2>Everything an instant photo needs —<br><span class="rainbow-text">and more.</span></h2>
-      <div class="feats">
+      <p class="section-label">✦ How it works</p>
+      <h2>Three steps.<br><span class="rainbow-text">Endless fun.</span></h2>
+      <div class="steps">
 
-        <div class="feat-card reveal">
-          <div class="feat-icon"><svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg></div>
-          <p class="feat-title">Instant Photo Frame</p>
-          <p class="feat-body">
-            Snap with the live camera or pick a shot from your gallery.
-            It drops straight into a classic white instant-photo frame — wide
-            bottom border and a soft shadow, so it almost feels real.
-            Front or back camera, pinch to zoom, tap to focus.
-          </p>
+        <div class="step reveal">
+          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg></div>
+          <p class="step-title">1. Snap or pick</p>
+          <p class="step-body">Shoot with your camera or pick a photo from your gallery. It lands in an instant-photo frame.</p>
+          <div class="phone"><img src="assets/app/en/home.webp" width="480" height="1043" loading="lazy" alt="ShakeSnap camera screen with two hikers in the viewfinder" /></div>
         </div>
 
-        <div class="feat-card reveal" style="transition-delay:.1s">
-          <div class="feat-icon"><svg class="icon" aria-hidden="true"><use href="#i-pen" /></svg></div>
-          <p class="feat-title">Write &amp; Doodle</p>
-          <p class="feat-body">
-            Type a caption in a handwriting-style font or grab the digital
-            pen and draw right on the white border — in any color you like.
-            The border is your canvas.
-          </p>
+        <div class="step reveal" style="transition-delay:.12s">
+          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-pen" /></svg></div>
+          <p class="step-title">2. Add your touch</p>
+          <p class="step-body">If you like, write a caption or doodle on the white border. Then choose: share it developed, or send it as a surprise.</p>
+          <div class="phone"><img src="assets/app/en/snap.webp" width="480" height="1043" loading="lazy" alt="The finished snap: a caption and a red heart on the white border" /></div>
         </div>
 
-        <div class="feat-card reveal" style="transition-delay:.2s">
-          <div class="feat-icon"><svg class="icon" aria-hidden="true"><use href="#i-send" /></svg></div>
-          <p class="feat-title">Share Anywhere</p>
-          <p class="feat-body">
-            Send your instant photo to friends on WhatsApp, Signal or any other
-            messenger — or post it straight to Instagram and your other socials.
-            You can also save it to your gallery in high resolution.
-          </p>
+        <div class="step reveal" style="transition-delay:.24s">
+          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-send" /></svg></div>
+          <p class="step-title">3. Send the vibe</p>
+          <p class="step-body">Send it via WhatsApp, Signal, Instagram or any other app — or save it to your gallery in full resolution.</p>
+          <div class="phone"><img src="assets/app/en/share.webp" width="480" height="1043" loading="lazy" alt="Share sheet: send as surprise or share as image" /></div>
         </div>
 
       </div>
@@ -269,7 +252,7 @@
       </div>
 
       <div class="reveal" style="transition-delay:.15s">
-        <p class="section-label" style="color: var(--r);">✦ The surprise feature</p>
+        <p class="section-label">✦ The surprise feature</p>
         <h2>Send a mystery.<br>Gift a <span class="rainbow-text">moment.</span></h2>
         <p class="body-text">
           Send a friend an <strong>undeveloped instant photo</strong> — just
@@ -285,40 +268,22 @@
           "is it a selfie? a meme? a vacation dump?<br>
           only shaking will tell." 😏
         </p>
-        <p class="demo-hint">
-          Try it: <strong>click the card</strong>, or tap it on your phone.
-        </p>
       </div>
 
     </div>
   </section>
 
-  <!-- ── How it works ──────────────────────────────────────────── -->
-  <section class="steps-section" id="how">
+  <!-- ── Promo video (English captions burned in) ───────────────────── -->
+  <section class="promo-section" id="video">
     <div class="container">
-      <p class="section-label">✦ How it works</p>
-      <h2>Three steps.<br><span class="rainbow-text">Endless fun.</span></h2>
-      <div class="steps">
-
-        <div class="step reveal">
-          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-camera" /></svg></div>
-          <p class="step-title">1. Snap or pick</p>
-          <p class="step-body">Take a photo in the app or choose one from your gallery. It instantly appears in an instant-photo frame, ready for your personal touch.</p>
-        </div>
-
-        <div class="step reveal" style="transition-delay:.12s">
-          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-pen" /></svg></div>
-          <p class="step-title">2. Add your touch</p>
-          <p class="step-body">Write a caption or draw on the white border. Then decide: share it fully developed, or send it undeveloped as a surprise.</p>
-        </div>
-
-        <div class="step reveal" style="transition-delay:.24s">
-          <div class="step-num"><svg class="icon" aria-hidden="true"><use href="#i-send" /></svg></div>
-          <p class="step-title">3. Send the vibe</p>
-          <p class="step-body">Share via WhatsApp, Signal, Instagram or save to your gallery. Your moment, your call.</p>
-        </div>
-
-      </div>
+      <p class="section-label">✦ In action</p>
+      <h2>ShakeSnap in <span class="rainbow-text nowrap">30 seconds.</span></h2>
+      <video class="promo-video" controls playsinline preload="none"
+        poster="assets/video/promo-en-poster.jpg"
+        aria-label="ShakeSnap promo video: snap a photo, shake to develop it, add a caption, send it as a surprise and unwrap it">
+        <source src="assets/video/promo-en.mp4" type="video/mp4" />
+        <source src="assets/video/promo-en.webm" type="video/webm" />
+      </video>
     </div>
   </section>
 
@@ -358,6 +323,49 @@
     </div>
   </section>
 
+  <!-- ── FAQ ───────────────────────────────────────────────────── -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <p class="section-label">✦ FAQ</p>
+      <h2>Questions?<br><span class="rainbow-text">Answers.</span></h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is ShakeSnap free?</summary>
+          <p>Yes. No subscriptions, no paywalls, no ads and no account. It's available for iPhone and Android.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do my photos leave my phone?</summary>
+          <p>ShakeSnap has no server that stores your photos. When you share a snap, it goes from your phone straight to your friend through the messenger you pick. Usage statistics and crash reports are optional and only sent if you say yes. Details in the <a href="app-privacy-en.html">App Privacy</a>.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What's the difference between “Share as image” and “Send as surprise”?</summary>
+          <p>“Share as image” sends the finished photo. Anyone can see it, with or without the app. “Send as surprise” sends the snap undeveloped. Your friend opens it in ShakeSnap and shakes their phone to reveal it, so they need the app.</p>
+        </details>
+        <details class="faq-item">
+          <summary>I got a ShakeSnap file. How do I open it?</summary>
+          <p>Install ShakeSnap (it's free), then go back to the chat and tap the file again. The app opens it, and you shake your phone to develop the photo. The file is called “Surprise-open-with-ShakeSnap”.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why does a surprise arrive as a file and not as a link?</summary>
+          <p>So that your photo never has to be uploaded to us. The snap travels as a file inside your chat, nowhere else. The downside is that some messengers show only the file, without our explanation. We're working on an optional link version that works everywhere and keeps your photo private. Until then, every share and every kind word about the app helps us get there sooner.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which messenger works best for surprises?</summary>
+          <p>Signal, and WhatsApp on iPhone, show the file together with our short explanation. WhatsApp on Android sometimes shows only the file. If your friend uses that combination, tell them what it is, or use “Share as image”, which always arrives with its message.<br>Tip: on Android, Signal shows the full message with the file.</p>
+        </details>
+        <details class="faq-item">
+          <summary>My friend doesn't have ShakeSnap. Can they still see my photo?</summary>
+          <p>Yes, with “Share as image”. For a surprise they need the free app, which is exactly what makes it a surprise.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I keep a snap?</summary>
+          <p>Yes. Tap Save to put it in your photo gallery. ShakeSnap doesn't keep a copy anywhere else.</p>
+        </details>
+      </div>
+      <p class="faq-back"><a href="#download" class="btn-ghost">↑ Back to download</a></p>
+    </div>
+  </section>
+
   <!-- ── Footer ────────────────────────────────────────────────── -->
   <footer>
     <div class="container footer-inner">
@@ -387,16 +395,20 @@
       </p>
       <p class="footer-legal" style="margin-top:.55rem;">
         Photos by
-        <a href="https://unsplash.com/photos/oTweoxMKdkA"
-          target="_blank" rel="noopener noreferrer">Brooke Cagle</a>,
         <a href="https://unsplash.com/photos/PGnqT0rXWLs"
           target="_blank" rel="noopener noreferrer">Helena Lopes</a>,
         <a href="https://unsplash.com/photos/BIk2ANMmNz4"
           target="_blank" rel="noopener noreferrer">Timon Studler</a>,
+        <a href="https://unsplash.com/photos/re2LZOB2XvY"
+          target="_blank" rel="noopener noreferrer">Dominik Jirovský</a>,
+        <a href="https://unsplash.com/photos/dy4QG5c5xWQ"
+          target="_blank" rel="noopener noreferrer">Nina Luong</a>,
         <a href="https://unsplash.com/photos/18N4okmWccM"
-          target="_blank" rel="noopener noreferrer">Morgan Lane</a> and
+          target="_blank" rel="noopener noreferrer">Morgan Lane</a>,
         <a href="https://unsplash.com/photos/NgDapgpAiTE"
-          target="_blank" rel="noopener noreferrer">Pineapple Supply Co.</a>
+          target="_blank" rel="noopener noreferrer">Pineapple Supply Co.</a> and
+        <a href="https://unsplash.com/photos/rTJ1g92XYbY"
+          target="_blank" rel="noopener noreferrer">Trojan Yao</a>
         on <a href="https://unsplash.com/"
           target="_blank" rel="noopener noreferrer">Unsplash</a>.
       </p>
